@@ -4,8 +4,10 @@ resource "aws_instance" "main" {
   subnet_id     = var.subnet_id
 
   vpc_security_group_ids = [var.security_group_id]
-
-  tags = {
+  lifecycle {
+    prevent_destroy = true
+  }
+ tags = {
     Name = "${var.environment}-server"
   }
 }
